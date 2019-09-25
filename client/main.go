@@ -7,10 +7,11 @@ import (
 
 /**
 登录界面
- */
+*/
 
- var userId int
- var userPwd string
+var userId int
+var userPwd string
+
 func main() {
 
 	//定义变量控制循环打印
@@ -18,14 +19,14 @@ func main() {
 	var key int
 
 	// 1.登录界面打印
-	for loop{
+	for loop {
 		fmt.Println("---------------欢迎登录聊天系统-------------")
 		fmt.Println("---------------1.登录聊天室-----------------")
 		fmt.Println("---------------2.注册账号-------------------")
 		fmt.Println("---------------3.退出聊天系统---------------")
 		fmt.Println("$ 请输入你的选择")
 
-		fmt.Scanf("%d\n",&key)
+		fmt.Scanf("%d\n", &key)
 		switch key {
 		case 1:
 			fmt.Println("$$$ 欢迎登录聊天系统！ $$$")
@@ -41,19 +42,15 @@ func main() {
 		}
 	}
 
-	if key == 1{
+	if key == 1 {
 		fmt.Println("请输入用户的ID：")
-		fmt.Scanf("%d\n",&userId)
+		fmt.Scanf("%d\n", &userId)
 		fmt.Println("请输入用户的密码：")
-		fmt.Scanf("%s\n",&userPwd)
+		fmt.Scanf("%s\n", &userPwd)
 
-		err:=login(userId,userPwd)
-		if err!=nil{
-			fmt.Println("-----登录失败----")
-		}else {
-			fmt.Println("----登录成功----")
-		}
-	}else if key ==2 {
+		login(userId, userPwd)
+
+	} else if key == 2 {
 		fmt.Println("-------2.用户注册------")
 	}
 
