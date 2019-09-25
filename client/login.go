@@ -48,24 +48,7 @@ func login(userId int, userPwd string) (err error) {
 		fmt.Println("Write err=", err)
 		return
 	}
-	//7. send data： send len(data)
-	//var pkgLen uint32
-	//pkgLen = uint32(len(marData))
-	//var byteIn [4]byte
-	//binary.BigEndian.PutUint32(byteIn[0:4], pkgLen)
-	//
-	//_,err=conn.Write(byteIn[0:4])
-	//if err!=nil{
-	//	fmt.Println("conn.Write err=",err)
-	//	return
-	//}
-	////send marData
-	//_,err= conn.Write(marData)
-	//if err!=nil{
-	//	fmt.Println("conn.Write fail ",err)
-	//	return
-	//}
-	//fmt.Printf("the length of message send sucess! len=%v buf=%s\n",len(marData),string(marData))
+
 	var loginResMes message.LoginResMes
 	mess, err := readPkg(conn)
 	if err != nil {
@@ -83,6 +66,6 @@ func login(userId int, userPwd string) (err error) {
 		fmt.Println(loginResMes.Error)
 		err = errors.New("LoginResMes.Code : 500 , error")
 	}
-	fmt.Println("RECV DATA:", loginResMes)
+	//fmt.Println("RECV DATA:", loginResMes)
 	return
 }

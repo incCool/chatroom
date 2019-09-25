@@ -58,7 +58,7 @@ func writePkg(conn net.Conn, data []byte) (err error) {
 		return
 	}
 
-	fmt.Println("send data sucess!")
+	//fmt.Println("send data sucess!")
 
 	return
 }
