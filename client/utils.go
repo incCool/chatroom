@@ -25,6 +25,7 @@ func readPkg(conn net.Conn) (mes message.Message, err error) {
 	n, err := conn.Read(buf[:pkgLen])
 	if uint32(n) != pkgLen || err != nil {
 		fmt.Println("conn.Read fail err=", err)
+		return
 	}
 
 	//把 buf[:pkgLen] 反序列化-> message.Message

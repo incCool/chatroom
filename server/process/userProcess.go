@@ -41,6 +41,7 @@ func (this *UserProcess) ServerProcessLogin(mes *message.Message) (err error) {
 	data, err := json.Marshal(loginResMes)
 	if err != nil {
 		fmt.Println("json.Marshal err=", err)
+		return
 	}
 
 	//将data赋值给resMes.Data
@@ -49,6 +50,7 @@ func (this *UserProcess) ServerProcessLogin(mes *message.Message) (err error) {
 	data, err = json.Marshal(resMes)
 	if err != nil {
 		fmt.Println("json Marshal fail err = ", err)
+		return
 	}
 
 	transf := &utils.Transfer{

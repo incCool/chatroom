@@ -1,7 +1,7 @@
 # chatroom
 Golang实现多人聊天系统
 
-## 1.主要功能
+## 1. 主要功能
 
  1.1 [用户登录](login.md)
 
@@ -9,4 +9,7 @@ Golang实现多人聊天系统
 
  1.3 [用户退出](exit.md)
 
-
+## 2. 安装编译
+### 编译客户端
+    在目录src/chatroom/ 下执行：
+    go build -o client.exe ./client 
