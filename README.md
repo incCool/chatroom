@@ -15,4 +15,4 @@ Golang实现多人聊天系统
     go build -o client.exe ./client 
 ### 编译服务器端
     在目录src/chatroom/ 下执行：
-    go build -o client.exe ./server
+    go build -o server.exe ./server
