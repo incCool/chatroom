@@ -1,6 +1,7 @@
-package main
+package process
 
 import (
+	"chatroom/client/utils"
 	"chatroom/common/message"
 	"encoding/json"
 	"errors"
@@ -8,8 +9,11 @@ import (
 	"net"
 )
 
+type UserProcess struct {
+}
+
 //写一个函数，完成后台登录
-func login(userId int, userPwd string) (err error) {
+func (this *UserProcess) Login(userId int, userPwd string) (err error) {
 
 	//1.connect server
 	conn, err := net.Dial("tcp", "localhost:8889")
@@ -43,14 +47,17 @@ func login(userId int, userPwd string) (err error) {
 		return
 	}
 
-	err = writePkg(conn, marData)
+	tf := &utils.Transfer{
+		Conn: conn,
+	}
+	err = tf.WritePkg(marData)
 	if err != nil {
 		fmt.Println("Write err=", err)
 		return
 	}
 
 	var loginResMes message.LoginResMes
-	mess, err := readPkg(conn)
+	mess, err := tf.ReadPkg()
 	if err != nil {
 		fmt.Println("recv data err = ", err)
 		return
@@ -61,7 +68,11 @@ func login(userId int, userPwd string) (err error) {
 		return
 	}
 	if loginResMes.Code == 200 {
-		fmt.Println("Login Sucess!")
+		//fmt.Println("Login Sucess!")
+		//启动一个协程处理客户端向服务器端发送的消息
+		go serverProcessMes(conn)
+
+		ShowMenu()
 	} else if loginResMes.Code == 500 {
 		fmt.Println(loginResMes.Error)
 		err = errors.New("LoginResMes.Code : 500 , error")

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"chatroom/client/process"
 	"fmt"
 	"os"
 )
@@ -30,7 +31,13 @@ func main() {
 		switch key {
 		case 1:
 			fmt.Println("$$$ 欢迎登录聊天系统！ $$$")
-			loop = false
+			fmt.Println("请输入用户的ID：")
+			fmt.Scanf("%d\n", &userId)
+			fmt.Println("请输入用户的密码：")
+			fmt.Scanf("%s\n", &userPwd)
+			up := &process.UserProcess{}
+			up.Login(userId, userPwd)
+			//loop = false
 		case 2:
 			fmt.Println(" 请注册你的账号 ")
 			loop = false
@@ -42,16 +49,17 @@ func main() {
 		}
 	}
 
-	if key == 1 {
-		fmt.Println("请输入用户的ID：")
-		fmt.Scanf("%d\n", &userId)
-		fmt.Println("请输入用户的密码：")
-		fmt.Scanf("%s\n", &userPwd)
-
-		login(userId, userPwd)
-
-	} else if key == 2 {
-		fmt.Println("-------2.用户注册------")
-	}
+	//if key == 1 {
+	//	fmt.Println("请输入用户的ID：")
+	//	fmt.Scanf("%d\n", &userId)
+	//	fmt.Println("请输入用户的密码：")
+	//	fmt.Scanf("%s\n", &userPwd)
+	//	up:=&process.UserProcess{
+	//	}
+	//	up.Login(userId, userPwd)
+	//
+	//} else if key == 2 {
+	//	fmt.Println("-------2.用户注册------")
+	//}
 
 }

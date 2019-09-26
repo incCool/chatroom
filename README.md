@@ -11,8 +11,8 @@ Golang实现多人聊天系统
 
 ## 2. 安装编译
 ### 编译客户端
-    在目录src/chatroom/ 下执行：
-    go build -o client.exe ./client 
+    在目录src/chatroom/client/ 下执行：
+    go build -o client.exe ./main
 ### 编译服务器端
-    在目录src/chatroom/ 下执行：
-    go build -o server.exe ./server
+    在目录src/chatroom/server 下执行：
+    go build -o server.exe ./main

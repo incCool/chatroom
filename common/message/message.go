@@ -7,14 +7,14 @@ const (
 )
 
 type Message struct {
-	Type string `json:"type"'` //消息类型
-	Data string `json:"data"`  //消息内容
+	Type string `json:"type"` //消息类型
+	Data string `json:"data"` //消息内容
 }
 
 type LoginMes struct {
-	UserId   int    `json:"userid"'`
-	UserPwd  string `json:"userpwd"'`
-	UserName string `json:"username"'`
+	UserId   int    `json:"userid"`
+	UserPwd  string `json:"userpwd"`
+	UserName string `json:"username"`
 }
 
 type LoginResMes struct {
@@ -23,4 +23,8 @@ type LoginResMes struct {
 }
 
 type RegisterMes struct {
+	UserId    int    `json:"userid"`
+	UserPwd   string `json:"userpwd"`
+	UserRePwd string `json:"userrepwd"`
+	UserName  string `json:"username"`
 }
