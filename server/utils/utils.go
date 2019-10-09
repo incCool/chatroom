@@ -61,7 +61,5 @@ func (this *Transfer) WritePkg(data []byte) (err error) {
 		return
 	}
 
-	fmt.Println("[ NEW ] server response sucess!")
-
 	return
 }

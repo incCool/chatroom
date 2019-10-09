@@ -1,8 +1,10 @@
 package main
 
 import (
+	"chatroom/server/model"
 	"fmt"
 	"net"
+	"time"
 )
 
 func process(conn net.Conn) {
@@ -13,8 +15,17 @@ func process(conn net.Conn) {
 	tmpProcessor.Process2()
 }
 
+//初始化userDao
+
+func initUserDao() {
+	model.MyUserDao = model.NewUserDao(pool)
+}
+
 func main() {
 
+	//初始化redis 连接池
+	initPool("localhost:6379", 16, 0, 300*time.Second)
+	initUserDao()
 	//监听
 	fmt.Println("服务器在8889端口监听....")
 	listen, err := net.Listen("tcp", "127.0.0.1:8889")

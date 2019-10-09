@@ -2,6 +2,7 @@ package process
 
 import (
 	"chatroom/common/message"
+	"chatroom/server/model"
 	"chatroom/server/utils"
 	"encoding/json"
 	"fmt"
@@ -28,14 +29,33 @@ func (this *UserProcess) ServerProcessLogin(mes *message.Message) (err error) {
 	resMes.Type = message.LoginResMesType
 	var loginResMes message.LoginResMes
 
-	if loginMes.UserId == 100 && loginMes.UserPwd == "123456" {
-		fmt.Println("登录成功")
-		loginResMes.Code = 200
-		loginResMes.Error = ""
+	//redis数据库用户验证
+	user, err := model.MyUserDao.Login(loginMes.UserId, loginMes.UserPwd)
+	if err != nil {
+		if err == model.ERROR_USER_NOTEXISTS {
+			loginResMes.Error = err.Error()
+			loginResMes.Code = 500
+		} else if err == model.ERROR_USER_PWD {
+			loginResMes.Error = err.Error()
+			loginResMes.Code = 300
+		} else {
+			loginResMes.Code = 505
+			loginResMes.Error = "服务器错误！！！"
+		}
 	} else {
-		loginResMes.Code = 500
-		loginResMes.Error = "该用户不存在！"
+		fmt.Println(user, "登录成功")
+		loginResMes.Code = 200
+		//
 	}
+
+	//if loginMes.UserId == 100 && loginMes.UserPwd == "123456" {
+	//	fmt.Println("登录成功")
+	//	loginResMes.Code = 200
+	//	loginResMes.Error = ""
+	//} else {
+	//	loginResMes.Code = 500
+	//	loginResMes.Error = "该用户不存在！"
+	//}
 
 	//讲loginResMes序列化
 	data, err := json.Marshal(loginResMes)

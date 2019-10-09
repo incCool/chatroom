@@ -12,9 +12,9 @@ type Message struct {
 }
 
 type LoginMes struct {
-	UserId   int    `json:"userid"`
-	UserPwd  string `json:"userpwd"`
-	UserName string `json:"username"`
+	UserId   int    `json:"userId"`
+	UserPwd  string `json:"userPwd"`
+	UserName string `json:"userName"`
 }
 
 type LoginResMes struct {
@@ -23,8 +23,8 @@ type LoginResMes struct {
 }
 
 type RegisterMes struct {
-	UserId    int    `json:"userid"`
-	UserPwd   string `json:"userpwd"`
-	UserRePwd string `json:"userrepwd"`
-	UserName  string `json:"username"`
+	UserId    int    `json:"userId"`
+	UserPwd   string `json:"userPwd"`
+	UserRePwd string `json:"userRePwd"`
+	UserName  string `json:"userName"`
 }

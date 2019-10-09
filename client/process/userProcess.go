@@ -4,7 +4,6 @@ import (
 	"chatroom/client/utils"
 	"chatroom/common/message"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net"
 )
@@ -50,6 +49,9 @@ func (this *UserProcess) Login(userId int, userPwd string) (err error) {
 	tf := &utils.Transfer{
 		Conn: conn,
 	}
+
+	fmt.Printf("客户端，发送消息的长度=%d 内容= %s", len(marData), string(marData))
+
 	err = tf.WritePkg(marData)
 	if err != nil {
 		fmt.Println("Write err=", err)
@@ -73,9 +75,9 @@ func (this *UserProcess) Login(userId int, userPwd string) (err error) {
 		go serverProcessMes(conn)
 
 		ShowMenu()
-	} else if loginResMes.Code == 500 {
+	} else if loginResMes.Code != 200 {
 		fmt.Println(loginResMes.Error)
-		err = errors.New("LoginResMes.Code : 500 , error")
+		err.Error() = loginResMes.Error
 	}
 	//fmt.Println("RECV DATA:", loginResMes)
 	return
